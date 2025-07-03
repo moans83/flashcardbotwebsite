@@ -1,141 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlashcardBot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlashcardBot – Learn & Study Smarter</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      background: #fff;
-      color: #333;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #faf8ff;
+      color: #222;
     }
     .container {
       display: flex;
       min-height: 100vh;
+      align-items: center;
+      justify-content: center;
     }
     .left, .right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
+      flex: 1 1 0;
+      padding: 3vw 4vw;
+      box-sizing: border-box;
     }
     .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background: #fff;
-      border-right: 1px solid #eee;
+      border-radius: 24px 0 0 24px;
+      box-shadow: 0 4px 24px rgba(107,63,160,0.07);
+    }
+    .left h1 {
+      font-size: 2.8rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 700;
+      color: #222;
+    }
+    .left h1 .brand {
+      color: #6B3FA0;
+    }
+    .left p {
+      font-size: 1.2rem;
+      color: #6B3FA0;
+      margin-bottom: 2rem;
+    }
+    .left img {
+      width: 220px;
+      margin-top: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(107,63,160,0.08);
+      background: #f5f0fa;
     }
     .right {
-      background: #faf6ff;
+      background: #f5f0fa;
+      border-radius: 0 24px 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #444;
-      line-height: 1.1;
-    }
-    .subtitle {
-      font-size: 1.25rem;
-      color: #6c3fc5;
-      margin-bottom: 2rem;
-      font-weight: 500;
-      text-align: center;
-    }
-    .robot-img {
-      width: 220px;
-      height: 220px;
-      object-fit: contain;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
-    .signup-title {
+    .right h2 {
       font-size: 2rem;
-      font-weight: 700;
+      color: #222;
       margin-bottom: 0.5rem;
-      color: #444;
-      text-align: center;
+      font-weight: 600;
     }
-    .signup-desc {
-      font-size: 1.1rem;
-      color: #888;
+    .right p {
+      color: #555;
       margin-bottom: 2rem;
+      font-size: 1.1rem;
       text-align: center;
     }
-    .form {
+    form {
       width: 100%;
-      max-width: 350px;
+      max-width: 340px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-    .form input[type="email"] {
+    input[type="email"] {
       padding: 0.9rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
+      border: 1.5px solid #d1c4e9;
+      border-radius: 8px;
+      font-size: 1.1rem;
       outline: none;
       transition: border 0.2s;
     }
-    .form input[type="email"]:focus {
-      border-color: #6c3fc5;
+    input[type="email"]:focus {
+      border: 1.5px solid #6B3FA0;
     }
-    .form button {
-      padding: 1rem;
-      background: #6c3fc5;
+    button[type="submit"] {
+      background: #6B3FA0;
       color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem;
       font-size: 1.1rem;
       font-weight: 600;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .form button:hover {
-      background: #4d2c91;
+    button[type="submit"]:hover {
+      background: #563080;
     }
-    .thanks-message {
+    #thankYou {
+      display: none;
+      color: #6B3FA0;
       font-size: 1.2rem;
-      color: #6c3fc5;
+      margin-top: 1.5rem;
       text-align: center;
-      margin-top: 2rem;
       font-weight: 600;
-    }
-    .footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      padding: 1rem 0;
-      color: #bbb;
-      font-size: 1rem;
-      background: #fff;
-      border-top: 1px solid #eee;
     }
     @media (max-width: 900px) {
       .container {
         flex-direction: column;
       }
       .left, .right {
-        border: none;
-        padding: 30px 10px;
+        border-radius: 24px;
       }
-      .footer {
-        position: static;
-      }
-    }
-    @media (max-width: 600px) {
-      .title {
-        font-size: 2rem;
-      }
-      .signup-title {
-        font-size: 1.3rem;
-      }
-      .robot-img {
-        width: 140px;
-        height: 140px;
+      .left, .right {
+        width: 100%;
+        min-height: 320px;
       }
     }
   </style>
@@ -143,27 +129,36 @@
 <body>
   <div class="container">
     <div class="left">
-      <div class="title">Hi! I'm<br><span style="color:#6c3fc5">FlashcardBot</span></div>
-      <div class="subtitle">I'm here to help you learn and study</div>
-      <img class="robot-img" src="https://cdn.jsdelivr.net/gh/monahafez/flashcardbot-assets/robot.png" alt="FlashcardBot Robot" />
+      <h1>Hi! I'm <span class="brand">FlashcardBot</span></h1>
+      <p>I'm here to help you learn and study</p>
+      <img src="robot.jpeg" alt="FlashcardBot Robot" />
     </div>
     <div class="right">
-      <div class="signup-title">Sign up today</div>
-      <div class="signup-desc">I will send you a message in a few weeks<br>when the app is ready!</div>
-      <form class="form" id="signup-form" autocomplete="off">
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      <h2>Sign up today</h2>
+      <p>I will send you a message in a few weeks when the app is ready!</p>
+      <form id="emailForm" autocomplete="off">
+        <input type="email" id="email" name="email" required placeholder="Enter your email" />
         <button type="submit">Submit</button>
       </form>
-      <div class="thanks-message" id="thanks-message" style="display:none;">Thanks - we will be in touch soon!</div>
+      <div id="thankYou">Thank you for signing up!</div>
     </div>
   </div>
-  <div class="footer">© FlashcardBot. All rights reserved.</div>
   <script>
-    document.getElementById('signup-form').addEventListener('submit', function(e) {
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      document.getElementById('signup-form').style.display = 'none';
-      document.getElementById('thanks-message').style.display = 'block';
+      var email = document.getElementById('email').value;
+      fetch('https://script.google.com/macros/s/AKfycbzmmcHb4e1q_q62VBBP0Si_54xsdgFa81_OIWbyCoOWaID0XDk0koKWnprZBJvqez_-/exec', {
+        method: 'POST',
+        body: JSON.stringify({email: email}),
+        headers: {'Content-Type': 'application/json'}
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('emailForm').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+      })
+      .catch(error => alert('There was an error. Please try again.'));
     });
   </script>
 </body>
-</html> 
+</html>
