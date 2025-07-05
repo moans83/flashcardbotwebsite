@@ -148,7 +148,6 @@
       e.preventDefault();
       var email = document.getElementById('email').value;
       fetch('https://script.google.com/macros/s/AKfycbzmmcHb4e1q_q62VBBP0Si_54xsdgFa81_OIWbyCoOWaID0XDk0koKWnprZBJvqez_-/exec', {
-        method: 'POST',
         body: JSON.stringify({email: email}),
         headers: {'Content-Type': 'application/json'}
       })
