@@ -37,7 +37,7 @@
       font-weight: 700;
       color: #222;
     }
-        .left h1 .brand {
+    .left h1 .brand {
       color: #6B3FA0;
     }
     .left p {
@@ -72,20 +72,12 @@
       font-size: 1.1rem;
       text-align: center;
     }
-<form action="https://script.google.com/macros/s/AKfycbzmmcHb4e1q_q62VBBP0Si_54xsdgFa81_OIWbyCoOWaID0XDk0koKWnprZBJvqez_-/exec" method="POST" target="hidden_iframe" id="emailForm" onsubmit="showThankYou()">
-  <input type="email" name="email" required placeholder="Enter your email" />
-  <button type="submit">Submit</button>
-</form>
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-<div id="thankYou" style="display:none;color:#6B3FA0;">Thank you for signing up!</div>
-<script>
-  function showThankYou() {
-    setTimeout(function() {
-      document.getElementById('emailForm').style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
-    }, 1000);
-  }
-</script>
+    form {
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     input[type="email"] {
       padding: 0.9rem 1rem;
@@ -144,35 +136,21 @@
     <div class="right">
       <h2>Sign up today</h2>
       <p>I will send you a message in a few weeks when the app is ready!</p>
-      <form id="emailForm" autocomplete="off">
-        <input type="email" id="email" name="email" required placeholder="Enter your email" />
+      <form action="https://script.google.com/macros/s/AKfycbzmmcHb4e1q_q62VBBP0Si_54xsdgFa81_OIWbyCoOWaID0XDk0koKWnprZBJvqez_-/exec" method="POST" target="hidden_iframe" id="emailForm" onsubmit="showThankYou()">
+        <input type="email" name="email" required placeholder="Enter your email" />
         <button type="submit">Submit</button>
       </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
       <div id="thankYou">Thank you for signing up!</div>
     </div>
   </div>
-<script>
-  document.getElementById('emailForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var email = document.getElementById('email').value;
-    fetch('https://script.google.com/macros/s/AKfycbzmmcHb4e1q_q62VBBP0Si_54xsdgFa81_OIWbyCoOWaID0XDk0koKWnprZBJvqez_-/exec', {
-      method: 'POST',
-      body: JSON.stringify({email: email}),
-      headers: {'Content-Type': 'application/json'}
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.json();
-    })
-    .then(data => {
-      document.getElementById('emailForm').style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
-    })
-    .catch(error => {
-      alert('There was an error. Please try again.');
-      console.error(error);
-    });
-  });
-</script>
+  <script>
+    function showThankYou() {
+      setTimeout(function() {
+        document.getElementById('emailForm').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
